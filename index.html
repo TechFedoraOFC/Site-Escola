@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCD Acessivel</title>
+  
+  <!-- Biblioteca visual do OpenStreetMap (Leaflet) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Design Limpo, Acessível e de Alto Contraste */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; color: #000; background: #fff; }
+    #top-bar { padding: 15px; background: #1a252f; color: white; display: flex; gap: 10px; align-items: center; justify-content: space-between; z-index: 1000; }
+    button { padding: 12px 20px; font-size: 16px; font-weight: bold; background: #f1c40f; border: none; border-radius: 5px; cursor: pointer; }
+    button:focus { outline: 4px solid #3498db; }
+    #container { display: flex; flex: 1; height: calc(100vh - 70px); position: relative; }
+    #map { flex: 3; height: 100%; width: 100%; }
+    #sidebar { flex: 1; max-width: 350px; background: #fdfdfd; padding: 20px; box-shadow: -2px 0 5px rgba(0,0,0,0.1); overflow-y: auto; border-left: 2px solid #ccc; z-index: 500; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .selo-status { padding: 8px; font-weight: bold; border-radius: 4px; display: inline-block; margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior com Comandos Principais -->
+  <div id="top-bar">
+    <h1 class="test" style="font-size: 18px; margin:0; text-align: center;">Rotas & Alertas Acessíveis</h1>
+  </div>
+
+  <!-- Leitor de tela silencioso -->
+  <div id="accessible-announcer" class="sr-only" aria-live="polite">
+   
+</div>
+
+  <div id="container">
+    <!-- Onde o OpenStreetMap será renderizado -->
+    <div class="map" id="map"></div>
+    
+    <!-- Barra Lateral para Filtros e Notas do Local -->
+    <div id="sidebar">
+      <div id="conteudo-sidebar">
+        <div class="Search">
+        <input class="search" type="text" id="searchInput" class="form-control" placeholder="Busque o Local desejado">
+        <button class="pcd-buttons" id="searchBtn">Buscar</button>
+        </div>
+        <h2 class="filters">Filtros de Rota</h2>
+        <label><input type="radio" name="filtro" value="cadeira" checked> Rota para Cadeirantes</label><br><br>
+        <label><input type="radio" name="filtro" value="idoso"> Rota para Mobilidade Reduzida</label><br><br>
+        <label><input type="radio" name="filtro" value="visual"> Rota para Deficientes Visuais</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts do OpenStreetMap (Leaflet) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script src="logic.js"></script>
+    
+</body>
+</html>
